@@ -39,7 +39,7 @@ body {
 .header-avatar {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: 12px;
     object-fit: cover;
     border: 2px solid rgba(255,255,255,0.7);
 }
@@ -131,27 +131,6 @@ body {
     background: linear-gradient(120deg, #005B96, #3BA7FF);
     color: white;
     margin-left: auto;
-}
-
-/* BUTTONS */
-.button-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.outline-btn {
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 2px solid #3BA7FF;
-    background: none;
-    color: #005B96;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.outline-btn:hover {
-    background: #D9E7FF;
 }
 
 /* INPUT */

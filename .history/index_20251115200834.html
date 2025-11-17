@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVECORE AI Chatbot</title>
+
+    <!-- LINK TO CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <div class="header-left">
+            <img src="logo-white.png" class="header-avatar" alt="Agent" />
+
+            <div class="header-text">
+                <span class="chat-with">Chat with</span>
+                <span class="agent-name">EVECORE AI Agent</span>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <span class="menu-btn">⋮</span>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <button onclick="restartChat()">Restart chat</button>
+                <button onclick="endChat()">End chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="status-bar">We are online!</div>
+
+    <!-- CHAT BODY -->
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-msg bubble">
+            Hello! 👋 Would you like to take a closer look at our services?
+        </div>
+
+        <div class="user-msg bubble user">
+            Yes, please!
+        </div>
+
+        <div class="bot-msg bubble">
+            Great! Could you provide your E-mail or phone number so we can contact you?
+        </div>
+
+        <div class="button-row">
+            <button class="outline-btn">E-mail</button>
+            <button class="outline-btn">Phone number</button>
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Enter your message..." />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+
+</div>
+
+<!-- JS FILE -->
+<script src="script.js"></script>
+
+</body>
+</html>

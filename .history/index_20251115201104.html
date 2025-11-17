@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVECORE AI Chatbot</title>
+
+    <!-- LINK TO CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <div class="header-left">
+            <img src="logo-white.png" class="header-avatar" alt="Agent" />
+
+            <div class="header-text">
+                <span class="chat-with">Chat with</span>
+                <span class="agent-name">EVECORE AI Agent</span>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <span class="menu-btn">⋮</span>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <button onclick="restartChat()">Restart chat</button>
+                <button onclick="endChat()">End chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="status-bar">We are online!</div>
+
+    <!-- CHAT BODY (EMPTY NOW) -->
+    <div class="chat-body" id="chatBody"></div>
+
+    <!-- INPUT -->
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Enter your message..." />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+
+</div>
+
+<!-- JS FILE -->
+<script src="script.js"></script>
+
+</body>
+</html>

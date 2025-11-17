@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVECORE AI Chatbot</title>
+
+    <style>
+        body {
+            background:#f0f2f7;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .chat-container {
+            width: 380px;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.12);
+        }
+
+        /* HEADER */
+        .chat-header {
+            background: linear-gradient(135deg, #315efb, #4ca7ff);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .chat-with {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .agent-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .header-icons span {
+            cursor: pointer;
+            font-size: 22px;
+            user-select: none;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 15px;
+            top: 65px;
+            background: white;
+            border-radius: 10px;
+            padding: 8px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-menu button {
+            width: 150px;
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .dropdown-menu button:hover {
+            background: #f3f3f3;
+        }
+
+        /* STATUS BAR */
+        .status-bar {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #3655ff;
+            background: #eef4ff;
+            font-weight: 600;
+        }
+
+        /* CHAT BODY */
+        .chat-body {
+            padding: 20px;
+            height: 420px;
+            overflow-y: auto;
+        }
+
+        .bubble {
+            background: #f3f5ff;
+            padding: 12px 16px;
+            margin-bottom: 14px;
+            border-radius: 16px;
+            max-width: 80%;
+            line-height: 1.4;
+            font-size: 15px;
+        }
+
+        .user {
+            background: #4d84ff;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Buttons in chat */
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .outline-btn {
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: 2px solid #4d84ff;
+            background: transparent;
+            color: #4d84ff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .outline-btn:hover {
+            background: #4d84ff;
+            color: white;
+        }
+
+        /* INPUT */
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 28px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .send-btn {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #315efb, #4ca7ff);
+            border: none;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <div class="header-left">
+            <img src="logo-white.png" class="header-avatar" alt="Agent" />
+
+            <div class="header-text">
+                <span class="chat-with">Chat with</span>
+                <span class="agent-name">EVECORE AI Agent</span>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <span class="menu-btn">⋮</span>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <button onclick="restartChat()">Restart chat</button>
+                <button onclick="endChat()">End chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUS -->
+    <div class="status-bar">We are online!</div>
+
+    <!-- CHAT BODY -->
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-msg bubble">
+            Hello! 👋 Would you like to take a closer look at our services?
+        </div>
+
+        <div class="user-msg bubble user">
+            Yes, please!
+        </div>
+
+        <div class="bot-msg bubble">
+            Great! Could you provide your E-mail or phone number so we can contact you?
+        </div>
+
+        <div class="button-row">
+            <button class="outline-btn">E-mail</button>
+            <button class="outline-btn">Phone number</button>
+        </div>
+
+    </div>
+
+    <!-- INPUT -->
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Enter your message..." />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let chatBody = document.getElementById("chatBody");
+
+    if (input.value.trim() === "") return;
+
+    let bubble = document.createElement("div");
+    bubble.className = "user-msg bubble user";
+    bubble.innerText = input.value;
+    chatBody.appendChild(bubble);
+
+    input.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Dropdown toggle
+document.querySelector(".menu-btn").addEventListener("click", () => {
+    document.getElementById("dropdownMenu").classList.toggle("show");
+});
+
+// Menu functions
+function restartChat() {
+    document.getElementById("chatBody").innerHTML = `
+        <div class="bot-msg bubble">
+            Hello! 👋 Would you like to take a closer look at our services?
+        </div>
+    `;
+}
+
+function endChat() {
+    document.getElementById("chatBody").innerHTML = `
+        <div class="bot-msg bubble">
+            Chat ended. Thank you! 😊
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
